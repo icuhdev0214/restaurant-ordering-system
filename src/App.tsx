@@ -35,16 +35,26 @@ function App() {
 	return (
 		<IonPage>
 			<IonHeader>
-				<IonToolbar>
-					<IonTitle>Restaurant Ordering System</IonTitle>
+				<IonToolbar color='light'>
+					<IonTitle>🍽️ Restaurant Ordering System</IonTitle>
 				</IonToolbar>
 			</IonHeader>
 
 			<IonContent fullscreen>
 				<main className='app'>
+					<div className='page-intro'>
+						<h1>Browse Menu and Place Your Order</h1>
+						<p>
+							Search, customize items with add-ons, and complete checkout with a
+							generated receipt.
+						</p>
+					</div>
+
 					<div className='layout'>
 						<section className='menu-section'>
-							<h2>Menu</h2>
+							<div className='section-header'>
+								<h2>Menu</h2>
+							</div>
 
 							<div className='controls'>
 								<SearchBar
@@ -67,10 +77,9 @@ function App() {
 							<Cart />
 						</section>
 					</div>
-
-					{receipt && <ReceiptModal receipt={receipt} />}
 				</main>
 			</IonContent>
+			<ReceiptModal receipt={receipt} />
 		</IonPage>
 	);
 }

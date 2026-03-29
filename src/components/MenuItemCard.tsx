@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import {
+	IonBadge,
 	IonButton,
 	IonCard,
 	IonCardContent,
 	IonCardHeader,
+	IonCardSubtitle,
 	IonCardTitle,
-	IonText,
 } from '@ionic/react';
 
 import { useAppDispatch } from '../app/hooks';
@@ -54,20 +55,24 @@ function MenuItemCard({ item }: MenuItemCardProps) {
 	}
 
 	return (
-		<IonCard>
+		<IonCard className='menu-card'>
+			<img
+				alt='Silhouette of mountains'
+				src='https://ionicframework.com/docs/img/demos/card-media.png'
+			/>
 			<IonCardHeader>
-				<IonCardTitle>{item.name}</IonCardTitle>
+				<IonCardTitle className='menu-title'>{item.name}</IonCardTitle>
+
+				<div className='menu-card-top'>
+					<IonBadge color='tertiary'>₱{item.price.toFixed(2)}</IonBadge>
+					<span className='menu-price'>{item.category}</span>
+				</div>
+				<IonCardSubtitle className='menu-subtitle'>
+					Customize your order with add-ons
+				</IonCardSubtitle>
 			</IonCardHeader>
 
 			<IonCardContent>
-				<IonText>
-					<p>Category: {item.category}</p>
-				</IonText>
-
-				<IonText>
-					<p>Price: ₱{item.price.toFixed(2)}</p>
-				</IonText>
-
 				<div className='addon-group'>
 					<strong>Add-ons</strong>
 
@@ -98,10 +103,18 @@ function MenuItemCard({ item }: MenuItemCardProps) {
 
 				<IonButton
 					expand='block'
+					color='primary'
 					onClick={handleAddToCart}
 				>
 					Add to Cart
 				</IonButton>
+				{/* <IonButton>
+					<IonIcon
+						slot='icon-only'
+						icon={heart}
+					></IonIcon>
+				</IonButton> */}
+				{/* <IonButton shape='round'>Round</IonButton> */}
 			</IonCardContent>
 		</IonCard>
 	);

@@ -1,11 +1,15 @@
-import React from 'react';
+import { type ReactNode, type ButtonHTMLAttributes } from 'react';
 
 type BasicProps = {
-	children?: React.ReactNode;
+	children?: ReactNode;
 	className?: string;
-	[key: string]: unknown;
 };
 
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+	children?: ReactNode;
+};
+
+/* Layout components */
 export function IonApp({ children }: BasicProps) {
 	return <div>{children}</div>;
 }
@@ -23,13 +27,14 @@ export function IonToolbar({ children }: BasicProps) {
 }
 
 export function IonTitle({ children }: BasicProps) {
-	return <div>{children}</div>;
+	return <h2>{children}</h2>;
 }
 
 export function IonContent({ children }: BasicProps) {
 	return <div>{children}</div>;
 }
 
+/* Card components */
 export function IonCard({ children }: BasicProps) {
 	return <div>{children}</div>;
 }
@@ -42,28 +47,34 @@ export function IonCardTitle({ children }: BasicProps) {
 	return <h3>{children}</h3>;
 }
 
+export function IonCardSubtitle({ children }: BasicProps) {
+	return <p>{children}</p>;
+}
+
 export function IonCardContent({ children }: BasicProps) {
 	return <div>{children}</div>;
 }
 
-export function IonText({ children }: BasicProps) {
-	return <div>{children}</div>;
-}
-
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	children?: React.ReactNode;
-};
-
+/* Buttons */
 export function IonButton({ children, ...props }: ButtonProps) {
 	return <button {...props}>{children}</button>;
 }
 
-type ModalProps = {
-	isOpen?: boolean;
-	children?: React.ReactNode;
+/* Text */
+export function IonText({ children }: BasicProps) {
+	return <span>{children}</span>;
+}
+
+/* Badge */
+export function IonBadge({ children }: BasicProps) {
+	return <span>{children}</span>;
+}
+
+/* Icon */
+type IconProps = {
+	icon?: unknown;
 };
 
-export function IonModal({ isOpen, children }: ModalProps) {
-	if (!isOpen) return null;
-	return <div>{children}</div>;
+export function IonIcon({ icon }: IconProps) {
+	return <span>{String(icon ?? '')}</span>;
 }

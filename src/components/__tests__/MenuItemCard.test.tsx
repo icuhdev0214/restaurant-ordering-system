@@ -27,8 +27,7 @@ describe('MenuItemCard + Cart', () => {
 		const cart = within(cartSection);
 
 		expect(cart.getAllByText('Burger')).toHaveLength(1);
-		expect(cart.getByText(/subtotal:/i)).toBeInTheDocument();
-		// expect(cart.getByLabelText('Subtotal 240.00')).toBeInTheDocument();
+		expect(cart.getByText(/subtotal/i)).toBeInTheDocument();
 		expect(cart.getAllByText(/240\.00/)).toHaveLength(2);
 		expect(cart.getByText('2')).toBeInTheDocument();
 	});

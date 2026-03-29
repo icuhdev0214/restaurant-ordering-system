@@ -1,4 +1,11 @@
-import { IonButton, IonCard, IonCardContent, IonText } from '@ionic/react';
+import {
+	IonBadge,
+	IonButton,
+	IonCard,
+	IonCardContent,
+	IonCardHeader,
+	IonCardTitle,
+} from '@ionic/react';
 
 import { useAppDispatch } from '../app/hooks';
 import {
@@ -21,39 +28,41 @@ function CartItemRow({ item }: CartItemRowProps) {
 	const totalPrice = unitPrice * item.quantity;
 
 	return (
-		<IonCard>
+		<IonCard className='cart-item-card'>
+			<IonCardHeader>
+				<div className='cart-item-top'>
+					<IonCardTitle>{item.name}</IonCardTitle>
+					<IonBadge color='warning'>x{item.quantity}</IonBadge>
+				</div>
+			</IonCardHeader>
+
 			<IonCardContent>
-				<h4>{item.name}</h4>
-
-				<IonText>
-					<p>Category: {item.category}</p>
-				</IonText>
-
-				<IonText>
-					<p>Base Price: ₱{item.basePrice.toFixed(2)}</p>
-				</IonText>
-
-				<IonText>
+				<div className='cart-meta'>
 					<p>
-						Add-ons:{' '}
+						<strong>Category:</strong> {item.category}
+					</p>
+					<p>
+						<strong>Base Price:</strong> ₱{item.basePrice.toFixed(2)}
+					</p>
+					<p>
+						<strong>Add-ons:</strong>{' '}
 						{item.addOns.length > 0
 							? item.addOns.map((addOn) => addOn.name).join(', ')
 							: 'None'}
 					</p>
-				</IonText>
-
-				<IonText>
-					<p>Unit Price: ₱{unitPrice.toFixed(2)}</p>
-				</IonText>
-
-				<IonText>
-					<p>Total: ₱{totalPrice.toFixed(2)}</p>
-				</IonText>
+					<p>
+						<strong>Unit Price:</strong> ₱{unitPrice.toFixed(2)}
+					</p>
+					<p>
+						<strong>Total:</strong> ₱{totalPrice.toFixed(2)}
+					</p>
+				</div>
 
 				<div className='quantity-row'>
 					<IonButton
 						size='small'
 						fill='outline'
+						color='medium'
 						onClick={() => dispatch(decreaseQuantity(item.cartKey))}
 					>
 						-
@@ -64,6 +73,7 @@ function CartItemRow({ item }: CartItemRowProps) {
 					<IonButton
 						size='small'
 						fill='outline'
+						color='primary'
 						onClick={() => dispatch(increaseQuantity(item.cartKey))}
 					>
 						+
@@ -72,7 +82,7 @@ function CartItemRow({ item }: CartItemRowProps) {
 					<IonButton
 						size='small'
 						color='danger'
-						fill='clear'
+						fill='solid'
 						onClick={() => dispatch(removeFromCart(item.cartKey))}
 					>
 						Remove
