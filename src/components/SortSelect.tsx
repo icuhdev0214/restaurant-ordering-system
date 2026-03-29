@@ -7,19 +7,18 @@ interface SortSelectProps {
 
 function SortSelect({ value, onChange }: SortSelectProps) {
 	return (
-		<select
-			value={value}
-			onChange={(event) => onChange(event.target.value as SortOption)}
-			style={{
-				padding: '10px 12px',
-				borderRadius: '8px',
-				border: '1px solid #ccc',
-			}}
-		>
-			<option value='name'>Sort by Name</option>
-			<option value='price'>Sort by Price</option>
-			<option value='category'>Sort by Category</option>
-		</select>
+		<div className='sort-control'>
+			<label htmlFor='sortBy'>Sort by</label>
+			<select
+				id='sortBy'
+				value={value}
+				onChange={(event) => onChange(event.target.value as SortOption)}
+			>
+				<option value='name'>Name</option>
+				<option value='price'>Price</option>
+				<option value='category'>Category</option>
+			</select>
+		</div>
 	);
 }
 

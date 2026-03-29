@@ -1,3 +1,5 @@
+import { IonButton, IonCard, IonCardContent, IonText } from '@ionic/react';
+
 import { useAppDispatch } from '../app/hooks';
 import {
 	decreaseQuantity,
@@ -19,63 +21,65 @@ function CartItemRow({ item }: CartItemRowProps) {
 	const totalPrice = unitPrice * item.quantity;
 
 	return (
-		<div
-			style={{
-				border: '1px solid #ddd',
-				borderRadius: '8px',
-				padding: '12px',
-				background: '#fff',
-				marginBottom: '12px',
-			}}
-		>
-			<h4 style={{ marginTop: 0, marginBottom: '8px' }}>{item.name}</h4>
-			<p style={{ margin: '4px 0' }}>Category: {item.category}</p>
-			<p style={{ margin: '4px 0' }}>
-				Base Price: ₱{item.basePrice.toFixed(2)}
-			</p>
+		<IonCard>
+			<IonCardContent>
+				<h4>{item.name}</h4>
 
-			<p style={{ margin: '4px 0' }}>
-				Add-ons:{' '}
-				{item.addOns.length > 0
-					? item.addOns.map((addOn) => addOn.name).join(', ')
-					: 'None'}
-			</p>
+				<IonText>
+					<p>Category: {item.category}</p>
+				</IonText>
 
-			<p style={{ margin: '4px 0' }}>Unit Price: ₱{unitPrice.toFixed(2)}</p>
-			<p style={{ margin: '4px 0' }}>Total: ₱{totalPrice.toFixed(2)}</p>
+				<IonText>
+					<p>Base Price: ₱{item.basePrice.toFixed(2)}</p>
+				</IonText>
 
-			<div
-				style={{
-					display: 'flex',
-					gap: '8px',
-					alignItems: 'center',
-					marginTop: '10px',
-				}}
-			>
-				<button
-					type='button'
-					onClick={() => dispatch(decreaseQuantity(item.cartKey))}
-				>
-					-
-				</button>
+				<IonText>
+					<p>
+						Add-ons:{' '}
+						{item.addOns.length > 0
+							? item.addOns.map((addOn) => addOn.name).join(', ')
+							: 'None'}
+					</p>
+				</IonText>
 
-				<span>{item.quantity}</span>
+				<IonText>
+					<p>Unit Price: ₱{unitPrice.toFixed(2)}</p>
+				</IonText>
 
-				<button
-					type='button'
-					onClick={() => dispatch(increaseQuantity(item.cartKey))}
-				>
-					+
-				</button>
+				<IonText>
+					<p>Total: ₱{totalPrice.toFixed(2)}</p>
+				</IonText>
 
-				<button
-					type='button'
-					onClick={() => dispatch(removeFromCart(item.cartKey))}
-				>
-					Remove
-				</button>
-			</div>
-		</div>
+				<div className='quantity-row'>
+					<IonButton
+						size='small'
+						fill='outline'
+						onClick={() => dispatch(decreaseQuantity(item.cartKey))}
+					>
+						-
+					</IonButton>
+
+					<span className='quantity-value'>{item.quantity}</span>
+
+					<IonButton
+						size='small'
+						fill='outline'
+						onClick={() => dispatch(increaseQuantity(item.cartKey))}
+					>
+						+
+					</IonButton>
+
+					<IonButton
+						size='small'
+						color='danger'
+						fill='clear'
+						onClick={() => dispatch(removeFromCart(item.cartKey))}
+					>
+						Remove
+					</IonButton>
+				</div>
+			</IonCardContent>
+		</IonCard>
 	);
 }
 

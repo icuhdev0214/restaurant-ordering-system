@@ -11,13 +11,7 @@ function MenuList({ items }: MenuListProps) {
 	}
 
 	return (
-		<div
-			style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-				gap: '16px',
-			}}
-		>
+		<div className='menu-grid'>
 			{items.map((item) => (
 				<MenuItemCard
 					key={item.id}

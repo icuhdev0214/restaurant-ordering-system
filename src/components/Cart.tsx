@@ -1,3 +1,5 @@
+import { IonButton, IonCard, IonCardContent, IonText } from '@ionic/react';
+
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { checkout } from '../features/cart/cartSlice';
 import {
@@ -36,39 +38,35 @@ function Cart() {
 						))}
 					</div>
 
-					<div
-						style={{
-							marginTop: '16px',
-							padding: '16px',
-							background: '#fff',
-							border: '1px solid #ddd',
-							borderRadius: '8px',
-						}}
-					>
-						<p aria-label={`Subtotal ${subtotal.toFixed(2)}`}>
-							<strong>Subtotal:</strong> ₱{subtotal.toFixed(2)}
-						</p>
-						<p>
-							<strong>Service Charge (10%):</strong> ₱{serviceCharge.toFixed(2)}
-						</p>
-						<p>
-							<strong>Final Total:</strong> ₱{finalTotal.toFixed(2)}
-						</p>
+					<IonCard>
+						<IonCardContent>
+							<IonText>
+								<p>
+									<strong>Subtotal:</strong> ₱{subtotal.toFixed(2)}
+								</p>
+							</IonText>
 
-						<button
-							type='button'
-							onClick={handleCheckout}
-							style={{
-								marginTop: '12px',
-								padding: '10px 14px',
-								borderRadius: '6px',
-								border: 'none',
-								cursor: 'pointer',
-							}}
-						>
-							Checkout
-						</button>
-					</div>
+							<IonText>
+								<p>
+									<strong>Service Charge (10%):</strong> ₱
+									{serviceCharge.toFixed(2)}
+								</p>
+							</IonText>
+
+							<IonText>
+								<p>
+									<strong>Final Total:</strong> ₱{finalTotal.toFixed(2)}
+								</p>
+							</IonText>
+
+							<IonButton
+								expand='block'
+								onClick={handleCheckout}
+							>
+								Checkout
+							</IonButton>
+						</IonCardContent>
+					</IonCard>
 				</>
 			)}
 		</section>

@@ -1,8 +1,17 @@
 import { useState } from 'react';
+import {
+	IonButton,
+	IonCard,
+	IonCardContent,
+	IonCardHeader,
+	IonCardTitle,
+	IonText,
+} from '@ionic/react';
+
 import { useAppDispatch } from '../app/hooks';
 import { addToCart } from '../features/cart/cartSlice';
-import type { MenuItem } from '../features/menu/menuTypes';
 import type { AddOn } from '../features/cart/cartTypes';
+import type { MenuItem } from '../features/menu/menuTypes';
 
 interface MenuItemCardProps {
 	item: MenuItem;
@@ -45,60 +54,56 @@ function MenuItemCard({ item }: MenuItemCardProps) {
 	}
 
 	return (
-		<div
-			style={{
-				border: '1px solid #ddd',
-				borderRadius: '8px',
-				padding: '16px',
-				background: '#fff',
-			}}
-		>
-			<h3 style={{ marginTop: 0 }}>{item.name}</h3>
-			<p style={{ margin: '8px 0' }}>Category: {item.category}</p>
-			<p style={{ margin: '8px 0' }}>Price: ₱{item.price.toFixed(2)}</p>
+		<IonCard>
+			<IonCardHeader>
+				<IonCardTitle>{item.name}</IonCardTitle>
+			</IonCardHeader>
 
-			<div style={{ margin: '12px 0' }}>
-				<p style={{ marginBottom: '8px', fontWeight: 600 }}>Add-ons</p>
+			<IonCardContent>
+				<IonText>
+					<p>Category: {item.category}</p>
+				</IonText>
 
-				{AVAILABLE_ADD_ONS.map((addOn) => {
-					const checked = selectedAddOns.some(
-						(selected) => selected.id === addOn.id
-					);
+				<IonText>
+					<p>Price: ₱{item.price.toFixed(2)}</p>
+				</IonText>
 
-					return (
-						<label
-							key={addOn.id}
-							style={{
-								display: 'block',
-								marginBottom: '6px',
-								cursor: 'pointer',
-							}}
-						>
-							<input
-								type='checkbox'
-								checked={checked}
-								onChange={() => handleToggleAddOn(addOn)}
-								style={{ marginRight: '8px' }}
-							/>
-							{addOn.name} (+₱{addOn.price.toFixed(2)})
-						</label>
-					);
-				})}
-			</div>
+				<div className='addon-group'>
+					<strong>Add-ons</strong>
 
-			<button
-				type='button'
-				onClick={handleAddToCart}
-				style={{
-					padding: '8px 12px',
-					borderRadius: '6px',
-					border: 'none',
-					cursor: 'pointer',
-				}}
-			>
-				Add to Cart
-			</button>
-		</div>
+					<div className='addon-list'>
+						{AVAILABLE_ADD_ONS.map((addOn) => {
+							const checked = selectedAddOns.some(
+								(selected) => selected.id === addOn.id
+							);
+
+							return (
+								<label
+									key={addOn.id}
+									className='addon-option'
+								>
+									<input
+										type='checkbox'
+										checked={checked}
+										onChange={() => handleToggleAddOn(addOn)}
+									/>
+									<span>
+										{addOn.name} (+₱{addOn.price.toFixed(2)})
+									</span>
+								</label>
+							);
+						})}
+					</div>
+				</div>
+
+				<IonButton
+					expand='block'
+					onClick={handleAddToCart}
+				>
+					Add to Cart
+				</IonButton>
+			</IonCardContent>
+		</IonCard>
 	);
 }
 

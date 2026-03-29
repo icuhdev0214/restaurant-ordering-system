@@ -2,61 +2,123 @@ body {
 	margin: 0;
 	font-family: Arial, sans-serif;
 	background: #f6f7fb;
-	color: #222;
+	color: #1f2937;
 }
 
-/* Layout */
+* {
+	box-sizing: border-box;
+}
+
 .app {
 	padding: 20px;
-}
-
-.header {
-	margin-bottom: 20px;
 }
 
 .layout {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	gap: 20px;
+	align-items: start;
 }
 
-/* Sections */
 .menu-section,
 .cart-section {
 	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
 	padding: 16px;
-	border-radius: 10px;
-	border: 1px solid #e0e0e0;
 }
 
-/* Controls */
 .controls {
-	display: flex;
-	gap: 10px;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 220px;
+	gap: 12px;
 	margin-bottom: 16px;
+	align-items: end;
 }
 
-/* Buttons */
-button {
-	background: #fe5b1b;
-	color: white;
-	border: none;
-	transition: 0.2s ease;
+.search-control,
+.sort-control {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 }
 
-button:hover {
-	opacity: 0.9;
+.search-control label,
+.sort-control label {
+	font-size: 14px;
+	font-weight: 600;
 }
 
-/* Error */
+.search-control input,
+.sort-control select {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	background: #fff;
+	font: inherit;
+}
+
+.menu-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 16px;
+}
+
+.addon-group {
+	margin: 16px 0;
+}
+
+.addon-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.addon-option {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.addon-option input[type='checkbox'] {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+}
+
+.quantity-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin-top: 12px;
+}
+
+.quantity-value {
+	min-width: 24px;
+	text-align: center;
+	font-weight: 700;
+}
+
+.receipt-item {
+	padding: 12px 0;
+	border-bottom: 1px solid #e5e7eb;
+}
+
 .error {
-	color: red;
+	color: #dc2626;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
 	.layout {
+		grid-template-columns: 1fr;
+	}
+
+	.controls {
 		grid-template-columns: 1fr;
 	}
 }
