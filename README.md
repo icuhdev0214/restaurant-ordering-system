@@ -63,7 +63,7 @@ Ionic is used for **UI components and layout**:
 
 ---
 
-# 🧪 Testing
+# Testing
 
 ```bash
 npm test
@@ -73,7 +73,7 @@ npm test
 
 ---
 
-# 📌 Notes
+# Notes
 
 - Uses a mock API (no backend persistence)
 - Focused on clean structure, state management, and user flow
