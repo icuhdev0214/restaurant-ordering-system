@@ -1,61 +1,79 @@
 # Restaurant Ordering System
 
-A lightweight restaurant ordering system built using React, TypeScript, and Redux Toolkit.  
-This project demonstrates async state management, cart logic, reusable components, and basic testing.
+A lightweight restaurant ordering system built with **React + TypeScript + Redux Toolkit**.  
+Users can browse menu items, add items to a cart with add-ons, and complete checkout with a generated receipt.
 
 ---
 
-## Features
-
-### Menu List
-
-- Fetches menu items from a mock API using Redux Toolkit `createAsyncThunk`
-- Displays name, price, and category
-- Removes duplicate items (same name, price, category)
-- Fuzzy, case-insensitive search across name, price, and category
-- Sorting by name, price, and category
-
-### Cart Management
-
-- Add items to cart
-- Increase or decrease quantity
-- Remove items
-- Supports add-ons (Fries, Ketchup)
-- Same item + same add-ons → increases quantity
-- Same item + different add-ons → separate entries
-- Displays running subtotal
-
-### Checkout
-
-- Calculates final total
-- Applies 10% service charge
-- Generates receipt with timestamp
-- Clears cart after checkout
-
-### Testing
-
-- Unit test for duplicate removal
-- Component test for cart behavior
-
----
-
-## Tech Stack
-
-- React
-- TypeScript (strict typing, no `any`)
-- Redux Toolkit
-- React Redux
-- Fuse.js (fuzzy search)
-- Jest
-- React Testing Library
-- JSON Server (mock API)
-
----
-
-## Setup Instructions
-
-### 1. Install dependencies
+# How to Install & Run
 
 ```bash
+# install dependencies
 npm install
 ```
+
+### Run the mock API (Terminal 1)
+
+```bash
+npm run api
+```
+
+### Run the app (Terminal 2)
+
+```bash
+npm run dev
+```
+
+---
+
+# Running URLs
+
+- Frontend: http://localhost:5173
+- API: http://localhost:3001
+
+---
+
+# What the App Does
+
+- Loads menu items from an API (using Redux async thunk)
+- Search and sort menu (name, price, category)
+- Remove duplicate items
+- Add items to cart with optional add-ons
+- Manage quantity (increase, decrease, remove)
+- Display running subtotal
+- Checkout:
+  - applies 10% service charge
+  - generates a receipt with timestamp
+  - clears the cart
+
+---
+
+# Ionic Usage
+
+Ionic is used for **UI components and layout**:
+
+- IonApp, IonPage, IonHeader, IonToolbar, IonContent → page structure
+- IonCard → menu, cart, and receipt layout
+- IonButton → actions (add to cart, checkout, etc.)
+
+👉 A **hybrid approach** was used:
+
+- Core logic is handled by React + Redux Toolkit
+- Ionic is used to improve styling and provide a mobile-friendly UI
+
+---
+
+# 🧪 Testing
+
+```bash
+npm test
+```
+
+- Includes unit and component tests using Jest + React Testing Library
+
+---
+
+# 📌 Notes
+
+- Uses a mock API (no backend persistence)
+- Focused on clean structure, state management, and user flow
